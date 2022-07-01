@@ -1,6 +1,7 @@
 package cli
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"os"
@@ -68,6 +69,8 @@ func Main(version string) {
 	pathPtr := flag.String("path", "", "")
 	databasePtr := flag.String("database", "", "")
 	sourcePtr := flag.String("source", "", "")
+	templatePtr := flag.String("template", "", "")
+	useEnv := flag.Bool("use-env", false, "")
 
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr,
@@ -145,6 +148,25 @@ Database drivers: `+strings.Join(database.List(), ", ")+"\n", createUsage, gotoU
 				return
 			}
 		}()
+	}
+	if *templatePtr != "" {
+		// Unmarshal template parameters from JSON.
+		templateParams := make(map[string]interface{})
+
+		if err := json.Unmarshal([]byte(*templatePtr), &templateParams); err != nil {
+			log.fatalErr(fmt.Errorf("failed to unmarshal template parameters: %v", err))
+		}
+
+		if *useEnv {
+			envVars := make(map[string]string)
+			for _, envVar := range os.Environ() {
+				envVal := os.Getenv(envVar)
+				envVars[envVar] = envVal
+			}
+			templateParams["_env"] = envVars
+		}
+
+		migrater.SetTemplateParameters(templateParams)
 	}
 
 	startTime := time.Now()

@@ -395,6 +395,10 @@ func (m *Migrate) Version() (version uint, dirty bool, err error) {
 	return suint(v), d, nil
 }
 
+func (m *Migrate) SetTemplateParameters(params map[string]interface{}) {
+	m.sourceDrv = source.NewTemplater(m.sourceDrv, params)
+}
+
 // read reads either up or down migrations from source `from` to `to`.
 // Each migration is then written to the ret channel.
 // If an error occurs during reading, that error is written to the ret channel, too.
