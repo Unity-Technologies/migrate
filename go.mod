@@ -40,7 +40,6 @@ require (
 	github.com/jackc/pgproto3/v2 v2.0.7 // indirect
 	github.com/jackc/pgx/v4 v4.10.1
 	github.com/kardianos/osext v0.0.0-20190222173326-2bc1f35cddc0 // indirect
-	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/ktrysmt/go-bitbucket v0.6.4
 	github.com/lib/pq v1.10.0
 	github.com/markbates/pkger v0.15.1
@@ -55,13 +54,10 @@ require (
 	github.com/stretchr/testify v1.7.0
 	github.com/xanzy/go-gitlab v0.15.0
 	gitlab.com/nyarla/go-crypt v0.0.0-20160106005555-d9a5dc2b789b // indirect
-	go.mongodb.org/mongo-driver v1.7.0
+	go.mongodb.org/mongo-driver v1.17.7
 	go.uber.org/atomic v1.7.0
-	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519 // indirect
-	golang.org/x/net v0.0.0-20220425223048-2871e0cb64e4 // indirect
 	golang.org/x/oauth2 v0.0.0-20211104180415-d3ed0bb246c8
-	golang.org/x/sys v0.0.0-20220503163025-988cb79eb6c6 // indirect
-	golang.org/x/tools v0.1.5
+	golang.org/x/tools v0.21.1-0.20240508182429-e35e4ccd0d2d
 	google.golang.org/api v0.62.0
 	google.golang.org/genproto v0.0.0-20220314164441-57ef72a4c106
 	modernc.org/b v1.0.0 // indirect
